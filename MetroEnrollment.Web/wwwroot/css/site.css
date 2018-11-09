@@ -63,3 +63,8 @@ hr {
     border-top: 1px solid #eee;
     width: 88%;
 }
+
+.submitBtn {
+    background-color: #b8a162;
+    border: 1px solid black;
+}

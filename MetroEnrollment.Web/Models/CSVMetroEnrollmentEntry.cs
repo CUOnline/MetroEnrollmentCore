@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MetroEnrollment.Web.Models
 {
-    public class CVSMetroEnrollmentEntry
+    public class CSVMetroEnrollmentEntry
     {
         [CsvProperty("first name")]
         public string FirstName { get; set; }
@@ -23,4 +23,5 @@ namespace MetroEnrollment.Web.Models
         [CsvProperty("section number")]
         public string SectionNumber { get; set; }
     }
+
 }

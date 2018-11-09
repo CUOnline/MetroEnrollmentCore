@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MetroEnrollment.Web.Models;
+using SimpleCsvParser;
+using System.IO;
 
 namespace MetroEnrollment.Web.Controllers
 {
@@ -15,23 +17,19 @@ namespace MetroEnrollment.Web.Controllers
             return View();
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public async Task<IActionResult> ParseCsv(HomeViewModel model)
         {
-            ViewData["Message"] = "Your application description page.";
+            string fileContents;
 
-            return View();
-        }
+            using (var reader = new StreamReader(model.File.OpenReadStream()))
+            {
+                fileContents = await reader.ReadToEndAsync();
+            }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            var list = CsvParser.Parse<CSVMetroEnrollmentEntry>(fileContents, new CsvStreamOptions() { RemoveEmptyEntries = true });
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

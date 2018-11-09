@@ -1,8 +1,8 @@
-﻿@{
+﻿@model HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-
 
 <img src="~/images/cu-online.png" />
 <br />
@@ -29,30 +29,24 @@
     <a class="logout float-right" href="/metro-enrollment/canvas-auth-logout">Log Out</a>
 
     <hr />
-
-    <div class="form-group row">
-        <label class="control-label pl-3 pr-2">Enrollment Term</label>
-        <select class="form-control form-control-sm col-sm-2">
-            <option value="">Select term</option>
-            <option>Spring 2019</option>
-            <option>Summer 2019</option>
-            <option>Fall 2019</option>
-            <option>Winter 2019</option>
-        </select>
-        <div class="col-sm-3 pl-0">
-
+    <form method="post" enctype="multipart/form-data" asp-action="ParseCsv" asp-controller="Home">
+        <div class="form-group row">
+            <label class="control-label pl-3 pr-2">Enrollment Term</label>
+            <select asp-for="Term" class="form-control form-control-sm col-sm-2">
+                <option value="">Select term</option>
+                <option>Spring 2019</option>
+                <option>Summer 2019</option>
+                <option>Fall 2019</option>
+                <option>Winter 2019</option>
+            </select>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Enrollment Data CSV</label>
-        <input type="file" class="form-control-file col-3 m-0 p-0">
-    </div>
-    <div class="mt-2">
-        <button type="button">Submit</button>
-    </div>
-
+        <div class="form-group">
+            <label>Enrollment Data CSV</label>
+            <input asp-for="File" type="file" class="form-control-file col-3 m-0 p-0" />
+        </div>
+        <div class="mt-2">
+            <input class="submitBtn" type="submit" value="Submit" />
+        </div>
+    </form>
 </div>
-
-
-

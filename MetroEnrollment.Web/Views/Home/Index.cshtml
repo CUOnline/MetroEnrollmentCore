@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<img src="~/images/cu-online.png" />
+<br />
+
+<div class="form-group p-4" id="container">
+    <h2 class="mb-1">MSU/CU Enrollment</h2>
+    <p class="mb-2"><a href="https://ucdenver.instructure.com" target="_blank">https://ucdenver.instructure.com</a></p>
+    <p class="mb-2">This tool accepts a list of data and uses it to enroll MSU students in CU Canvas courses.</p>
+
+    <p class="mb-2">It will check if the user already exists by searching for the specified email as well as SIS IDs and unique names matching the specified id (with the prefix "metro_" ). If no user is found, a new one will be created.</p>
+    <p class="mb-2">The user will be enrolled in the specified course section, as long as the provided course data unambigiously identifies a unique course. If multiple sections exist have the same name and the same enrollment term, this ambiguity needs to be resolved before the enrollment will succeed.</p>
+    <p class="mb-2">Upon completion, you will receive an email with a copy of the input data along with any errors or status messages for each record.</p>
+    <p class="mb-2">The data should be in CSV format with the following headers/fields (any order, case-insensitive).</p>
+    <ul>
+        <li>first name</li>
+        <li>last name</li>
+        <li>email</li>
+        <li>id (The ID of the student in the Metro system)</li>
+        <li>course code (e.g. PHY, MATH)</li>
+        <li>course number (e.g. 101, 201)</li>
+        <li>section number (e.g. 001 [Leading zeroes must match what appears in Canvas])</li>
+    </ul>
+
+    <a class="logout float-right" href="/metro-enrollment/canvas-auth-logout">Log Out</a>
+
+    <hr />
+
+    <div class="form-group row">
+        <label class="control-label pl-3 pr-2">Enrollment Term</label>
+        <select class="form-control form-control-sm col-sm-2">
+            <option value="">Select term</option>
+            <option>Spring 2019</option>
+            <option>Summer 2019</option>
+            <option>Fall 2019</option>
+            <option>Winter 2019</option>
+        </select>
+        <div class="col-sm-3 pl-0">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Enrollment Data CSV</label>
+        <input type="file" class="form-control-file col-3 m-0 p-0">
+    </div>
+    <div class="mt-2">
+        <button type="button">Submit</button>
+    </div>
+
+</div>
+
+
+
